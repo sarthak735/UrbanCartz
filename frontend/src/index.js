@@ -4,14 +4,38 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import About from './Components/Navbar1/about/About';
+import Contact from './Components/Navbar1/contact/Contact';
+import HelpCenter from './Components/Navbar1/helpCenter/HelpCenter';
+import Logins from './Components/Navbar2/logIn/Logins.js';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<App/>}>
 
-    </Route>
-  )
-)
+
+const router  = createBrowserRouter([
+  {
+    path:"/",
+    element: <App/>,
+    children:[
+      {
+        path: "about",
+        element: <About/>
+      },
+      {
+        path: "contact",
+        element: <Contact/>
+      },
+      {
+        path: "help",
+        element: <HelpCenter/>
+      },
+      
+    ]
+  },
+  {
+    path: "login",
+    element: <Logins/>
+  },
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

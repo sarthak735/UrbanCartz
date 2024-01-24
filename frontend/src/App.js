@@ -1,4 +1,4 @@
-
+import { Outlet } from 'react-router-dom';
 import './App.css';
 import Header1 from './Components/Navbar1/Header1';
 import Header2 from './Components/Navbar2/Header2';
@@ -11,6 +11,7 @@ function App() {
       </div>
       <div className=''>
         <Header2/>
+        <Outlet/>
       </div>
     </div>
   );
