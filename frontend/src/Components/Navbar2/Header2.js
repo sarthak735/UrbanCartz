@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UC_logo from "../../assets/UC_logo.png";
+import UC_logo from "../../Components/Assets/UC_logo.png";
 import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -8,9 +8,10 @@ import { CiSearch } from "react-icons/ci";
 
 const Header2 = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const handleShowMenu = () =>{
-    setShowMenu(preve => !preve)
-  }
+  const handleShowMenu = () => {
+    setShowMenu((preve) => !preve);
+  };
+  const [menu, setMenu] = useState("shop");
   return (
     <header className=" py-4 shadow-md w-full px-12 md:px-10">
       <div className="flex  items-center h-full justify-between">
@@ -33,17 +34,25 @@ const Header2 = () => {
           </div>
         </Link>
 
+        <ul className=" flex items-center list-none gap-12 text-gray-500 text-base font-medium">
+          <li onClick={() => {setMenu("shop")}} className=" flex flex-col items-center justify-center gap-1 cursor-pointer"><Link to="/">Shop</Link> {menu === "shop"?<hr className=" border-none w-4/5 h-1 rounded-lg bg-red-500"/>:<></>}</li>
+          <li onClick={() => {setMenu("mens")}} className=" flex flex-col items-center justify-center gap-1 cursor-pointer"><Link to="/mens">Men</Link> {menu === "mens"?<hr className=" border-none w-4/5 h-1 rounded-lg bg-red-500"/>:<></>}</li>
+          <li onClick={() => {setMenu("womens")}} className=" flex flex-col items-center justify-center gap-1 cursor-pointer"><Link to="/womens">Women</Link> {menu === "womens"?<hr className=" border-none w-4/5 h-1 rounded-lg bg-red-500"/>:<></>}</li>
+          <li onClick={() => {setMenu("kids")}} className=" flex flex-col items-center justify-center gap-1 cursor-pointer"><Link to="/kids">Kids</Link> {menu === "kids"?<hr className=" border-none w-4/5 h-1 rounded-lg bg-red-500"/>:<></>}</li>
+        </ul>
+
         <div className="flex items-center gap-4 md:gap-9">
           <div onClick={handleShowMenu}>
             <div className=" flex items-center gap-4 text-base cursor-pointer">
               <FaUserCircle size="30" />
-              
             </div>
 
             {showMenu && (
               <div className="absolute  bg-white py-2 px-2 shadow drop-shadow-md">
                 <p className=" whitespace-nowrap cursor-pointer">New product</p>
-                <p className=" whitespace-nowrap cursor-pointer"><Link to={"login"}>Log In</Link></p>
+                <p className=" whitespace-nowrap cursor-pointer">
+                  <Link to={"login"}>Log In</Link>
+                </p>
               </div>
             )}
           </div>
