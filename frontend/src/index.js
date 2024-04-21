@@ -10,11 +10,17 @@ import {
 import About from "./Components/Navbar1/about/About";
 import Contact from "./Components/Navbar1/contact/Contact";
 import HelpCenter from "./Components/Navbar1/helpCenter/HelpCenter";
-import Logins from "./Components/Pages/Logins.js";
-import ShopCategory from "./Components/Pages/ShopCategory.js";
-import Product from "./Components/Pages/Product.js";
-import Cart from "./Components/Pages/Cart.js";
-import Shop from "./Components/Pages/Shop.js";
+import Logins from "./Pages/Logins.js";
+import ShopCategory from "./Pages/ShopCategory.js";
+import Product from "./Pages/Product.js";
+import Cart from "./Pages/Cart.js";
+import Shop from './Pages/Shop.js';
+import men_banner from './Components/Assets/banner_mens.png';
+import women_banner from './Components/Assets/banner_women.png';
+import kid_banner from './Components/Assets/banner_kids.png';
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -27,15 +33,15 @@ const router = createBrowserRouter([
       },
       {
         path: "mens",
-        element: <ShopCategory category="men" />,
+        element: <ShopCategory banner={men_banner} category="men" />,
       },
       {
         path: "womens",
-        element: <ShopCategory category="women" />,
+        element: <ShopCategory banner ={women_banner} category="women" />,
       },
       {
         path: "kids",
-        element: <ShopCategory category="kid" />,
+        element: <ShopCategory banner = {kid_banner} category="kid" />,
       },
       {
         path: "about",
@@ -57,7 +63,7 @@ const router = createBrowserRouter([
   },
   {
     path: "product",
-    element: <Product />,
+    element: <Product/>,
     children: [
       {
         path: ":productId",
