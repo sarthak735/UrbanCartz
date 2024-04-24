@@ -13,10 +13,10 @@ const ShopCategory = (props) => {
           <span className=' font-semibold'>Showing 1-12</span> out of 36 products
         </p>
         <div className=' pt-[10px] pl-[20px] rounded-[40px] border border-solid border-[#888]'>
-          <button className=''>Sort by <img src={dropdown_icon} alt=''/></button>
+          <button className=' '>Sort by <img src={dropdown_icon} alt=''/></button>
         </div>
       </div>
-      <div className=' mt-[20px] ml-[125px] mr-[125px] grid grid-cols-4 gap-y-20'>
+      <div className=' mt-[20px] ml-[125px] mr-[175px] grid grid-cols-4 gap-y-20 gap-x-20'>
         {all_product.map((item, i) => {
           if(props.category === item.category){
             return <Item key={i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>

@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import UC_logo from "../../Components/Assets/UC_logo.png";
 import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { BsCart2 } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
+import { ShopContext } from "../../Context/ShopContext";
 
 const Header2 = () => {
+  const {getTotalCartItem} = useContext(ShopContext);
   const [showMenu, setShowMenu] = useState(false);
+  
+
   const handleShowMenu = () => {
     setShowMenu((preve) => !preve);
   };
@@ -60,9 +64,9 @@ const Header2 = () => {
             <IoMdHeartEmpty size="30" />
           </div>
           <div className=" relative">
-            <BsCart2 size="30" />
+            <Link to={"cart"}><BsCart2 size="30" /></Link>
             <div className=" absolute -top-1 -right-1 bg-red-600 text-white h-4 w-4 rounded-full m-0 text-sm text-center">
-              0
+              {getTotalCartItem()}
             </div>
           </div>
         </div>

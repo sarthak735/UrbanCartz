@@ -3,10 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./Components/Navbar1/about/About";
 import Contact from "./Components/Navbar1/contact/Contact";
 import HelpCenter from "./Components/Navbar1/helpCenter/HelpCenter";
@@ -14,13 +11,10 @@ import Logins from "./Pages/Logins.js";
 import ShopCategory from "./Pages/ShopCategory.js";
 import Product from "./Pages/Product.js";
 import Cart from "./Pages/Cart.js";
-import Shop from './Pages/Shop.js';
-import men_banner from './Components/Assets/banner_mens.png';
-import women_banner from './Components/Assets/banner_women.png';
-import kid_banner from './Components/Assets/banner_kids.png';
-
-
-
+import Shop from "./Pages/Shop.js";
+import men_banner from "./Components/Assets/banner_mens.png";
+import women_banner from "./Components/Assets/banner_women.png";
+import kid_banner from "./Components/Assets/banner_kids.png";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +22,22 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "product",
+        element: <Product />,
+        children: [
+          {
+            path: ":productId",
+            element: <Product />,
+          },
+        ],
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
         path: "/",
-        element: <Shop/>,
+        element: <Shop />,
       },
       {
         path: "mens",
@@ -37,11 +45,11 @@ const router = createBrowserRouter([
       },
       {
         path: "womens",
-        element: <ShopCategory banner ={women_banner} category="women" />,
+        element: <ShopCategory banner={women_banner} category="women" />,
       },
       {
         path: "kids",
-        element: <ShopCategory banner = {kid_banner} category="kid" />,
+        element: <ShopCategory banner={kid_banner} category="kid" />,
       },
       {
         path: "about",
@@ -60,20 +68,6 @@ const router = createBrowserRouter([
   {
     path: "login",
     element: <Logins />,
-  },
-  {
-    path: "product",
-    element: <Product/>,
-    children: [
-      {
-        path: ":productId",
-        element: <Product />,
-      },
-    ],
-  },
-  {
-    path: "cart",
-    element: <Cart />,
   },
 ]);
 
