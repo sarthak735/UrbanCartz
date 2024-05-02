@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import UC_logo from "../../Components/Assets/UC_logo.png";
 import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { BsCart2 } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
+import { ShopContext } from "../../Context/ShopContext";
 
 const Header2 = () => {
+  const {getTotalCartItem} = useContext(ShopContext);
   const [showMenu, setShowMenu] = useState(false);
+  
+
   const handleShowMenu = () => {
     setShowMenu((preve) => !preve);
   };
   const [menu, setMenu] = useState("shop");
   return (
-    <header className=" py-4 shadow-md w-full px-12 md:px-10">
+    <header className=" py-4 shadow-md px-12 md:px-10">
       <div className="flex  items-center h-full justify-between">
         <Link to={""}>
           <div className="  h-12 flex flex-row items-center w-full space-x-7">
@@ -50,9 +54,10 @@ const Header2 = () => {
             {showMenu && (
               <div className="absolute  bg-white py-2 px-2 shadow drop-shadow-md">
                 <p className=" whitespace-nowrap cursor-pointer">New product</p>
-                <p className=" whitespace-nowrap cursor-pointer">
+                {localStorage.getItem('auth-token')?<button onClick={() => {localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>:<p className=" whitespace-nowrap cursor-pointer">
                   <Link to={"login"}>Log In</Link>
-                </p>
+                </p>}
+                
               </div>
             )}
           </div>
@@ -60,9 +65,9 @@ const Header2 = () => {
             <IoMdHeartEmpty size="30" />
           </div>
           <div className=" relative">
-            <BsCart2 size="30" />
+            <Link to={"cart"}><BsCart2 size="30" /></Link>
             <div className=" absolute -top-1 -right-1 bg-red-600 text-white h-4 w-4 rounded-full m-0 text-sm text-center">
-              0
+              {getTotalCartItem()}
             </div>
           </div>
         </div>
