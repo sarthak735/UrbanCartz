@@ -12,8 +12,11 @@ const { type } = require("os");
 app.use(express.json());
 app.use(cors());
 
+require("dotenv").config();
+
+
 //Database connect with mongodb
-mongoose.connect("mongodb+srv://kuwarsarthaksingh735:Sarthak735@cluster0.t6cnbgn.mongodb.net/e-commerce")
+mongoose.connect(process.env.mongoose_url)
 
 //API Creation
 
