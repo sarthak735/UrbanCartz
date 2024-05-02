@@ -17,7 +17,7 @@ const Header2 = () => {
   };
   const [menu, setMenu] = useState("shop");
   return (
-    <header className=" py-4 shadow-md w-full px-12 md:px-10">
+    <header className=" py-4 shadow-md px-12 md:px-10">
       <div className="flex  items-center h-full justify-between">
         <Link to={""}>
           <div className="  h-12 flex flex-row items-center w-full space-x-7">
@@ -54,9 +54,10 @@ const Header2 = () => {
             {showMenu && (
               <div className="absolute  bg-white py-2 px-2 shadow drop-shadow-md">
                 <p className=" whitespace-nowrap cursor-pointer">New product</p>
-                <p className=" whitespace-nowrap cursor-pointer">
+                {localStorage.getItem('auth-token')?<button onClick={() => {localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>:<p className=" whitespace-nowrap cursor-pointer">
                   <Link to={"login"}>Log In</Link>
-                </p>
+                </p>}
+                
               </div>
             )}
           </div>
