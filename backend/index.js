@@ -271,10 +271,13 @@ app.post('/getCart', fetchUser, async(req,res) =>{
     res.json(userData.cartData);
 })
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
 
 app.listen(port, (error) =>{
     if(!error){
-        console.log("Server Running on Port "+port)
+        console.log(`Server Running on Port ${port}` )
     }else{
         console.log("Error : "+error)
     }
