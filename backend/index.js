@@ -16,7 +16,7 @@ require("dotenv").config();
 
 
 //Database connect with mongodb
-mongoose.connect(process.env.mongoose_url)
+mongoose.connect(process.env.MONGOOSE_URL);
 
 //API Creation
 
@@ -271,9 +271,7 @@ app.post('/getCart', fetchUser, async(req,res) =>{
     res.json(userData.cartData);
 })
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
+
 
 app.listen(port, (error) =>{
     if(!error){
