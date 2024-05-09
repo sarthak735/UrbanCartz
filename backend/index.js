@@ -46,8 +46,8 @@ const upload = multer({storage: storage})
 
 
 // Creating upload endpint for images
-app.use('/images', express.static('upload/images'))
-app.post("/upload", upload.single('product'),(req,res) =>{
+app.use('https://urbancartz-backend.onrender.com/images', express.static('upload/images'))
+app.post("https://urbancartz-backend.onrender.com/upload", upload.single('product'),(req,res) =>{
     res.json({
         success: 1,
         // image_url: `http://localhost:${port}/images/${req.file.filename}`
@@ -92,7 +92,7 @@ const Product = mongoose.model("Product", {
     },
 })
 
-app.post('/addproduct', async (req, res)=>{
+app.post('https://urbancartz-backend.onrender.com/addproduct', async (req, res)=>{
     let products = await Product.find({});
     let id;
     if(products.length > 0){
@@ -121,7 +121,7 @@ app.post('/addproduct', async (req, res)=>{
 
 //Creating API for deleting products
 
-app.post('/removeproduct', async(req, res)=>{
+app.post('https://urbancartz-backend.onrender.com/removeproduct', async(req, res)=>{
     await Product.findOneAndDelete({id:req.body.id});
     console.log("Removed");
 
@@ -132,7 +132,7 @@ app.post('/removeproduct', async(req, res)=>{
 })
 
 // Creating API for getting all products
-app.get('/allproducts', async(req,res)=>{
+app.get('https://urbancartz-backend.onrender.com/allproducts', async(req,res)=>{
     let products = await Product.find({});
     console.log("All products are fetched");
     res.send(products);
@@ -162,7 +162,7 @@ const Users = mongoose.model('Users', {
 
 //Creating endpoint for registering the user
 
-app.post('/signup', async(req,res) =>{
+app.post('https://urbancartz-backend.onrender.com/signup', async(req,res) =>{
     let check = await Users.findOne({email:req.body.email});
 
     if(check){
@@ -194,7 +194,7 @@ app.post('/signup', async(req,res) =>{
 
 // Creating endpoint for user login
 
-app.post('/login', async(req,res) =>{
+app.post('https://urbancartz-backend.onrender.com/login', async(req,res) =>{
     let user = await Users.findOne({email:req.body.email});
 
     if(user){
@@ -218,7 +218,7 @@ app.post('/login', async(req,res) =>{
 
 // Creating endpoint for newCollection data
 
-app.get('/newcollections', async(req,res)=>{
+app.get('https://urbancartz-backend.onrender.com/newcollections', async(req,res)=>{
     let products = await Product.find({});
     let newcollection = products.slice(1).slice(-8);
     console.log("New Collections Fetched");
@@ -227,7 +227,7 @@ app.get('/newcollections', async(req,res)=>{
 
 // Creating endpoint for popular in women section
 
-app.get('/popularinwomen', async(req, res) => {
+app.get('https://urbancartz-backend.onrender.com/popularinwomen', async(req, res) => {
     let products = await Product.find({category:"women"});
     let popular_in_women = products.slice(0,4);
     console.log("Popular in women fetched");
@@ -254,7 +254,7 @@ app.get('/popularinwomen', async(req, res) => {
 
 
 // Creating endpoint for adding products in cartdata
-app.post('/addtocart', fetchUser, async(req,res)=>{
+app.post('https://urbancartz-backend.onrender.com/addtocart', fetchUser, async(req,res)=>{
     let userData = await Users.findOne({_id:req.user.id});
     userData.cartData[req.body.itemId] += 1;
     await Users.findOneAndUpdate({_id:req.user.id},{cartData:userData.cartData});
@@ -263,7 +263,7 @@ app.post('/addtocart', fetchUser, async(req,res)=>{
 }) 
 
 //Creating endpoint to remove the cart data
-app.post('/removefromcart',fetchUser,async(req,res) =>{
+app.post('https://urbancartz-backend.onrender.com/removefromcart',fetchUser,async(req,res) =>{
     let userData = await Users.findOne({_id:req.user.id});
     if(userData.cartData[req.body.itemId] > 0){
         userData.cartData[req.body.itemId] -= 1;
@@ -275,7 +275,7 @@ app.post('/removefromcart',fetchUser,async(req,res) =>{
 })
 
 // Creatting endpoint to get existing cart data of User
-app.post('/getCart', fetchUser, async(req,res) =>{
+app.post('https://urbancartz-backend.onrender.com/getCart', fetchUser, async(req,res) =>{
     console.log("GotCart");
     let userData = await Users.findOne({_id:req.user.id});
     res.json(userData.cartData);
