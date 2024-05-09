@@ -17,6 +17,15 @@ require("dotenv").config();
 
 //Database connect with mongodb
 mongoose.connect(process.env.MONGOOSE_URL);
+const mong = mongoose.ConnectionStates.connected;
+app.listen(mong, (error) =>{
+    if(!error){
+        console.log(`Mongoose is ${mong}` )
+
+    }else{
+        console.log("Error : "+error)
+    }
+})
 
 //API Creation
 
@@ -277,6 +286,7 @@ app.post('/getCart', fetchUser, async(req,res) =>{
 app.listen(port, (error) =>{
     if(!error){
         console.log(`Server Running on Port ${port}` )
+
     }else{
         console.log("Error : "+error)
     }
