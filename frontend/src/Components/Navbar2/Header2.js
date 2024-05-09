@@ -22,7 +22,7 @@ const Header2 = () => {
         <Link to={""}>
           <div className="  h-12 flex flex-row items-center w-full space-x-7">
             <div>
-              <img src={UC_logo} className=" h-20" />
+              <img src={UC_logo} alt="" className=" h-20" />
             </div>
             <div className="h-10 hover:border hover:border-black rounded-full overflow-hidden">
               <input
