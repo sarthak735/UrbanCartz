@@ -3,11 +3,15 @@ import cross_icon from "../../assets/cross_icon.png";
 
 const ListProduct = () => {
   const [allProducts, setAllProducts] = useState([]);
-
+ 
   const fetchInfo = async () => {
-    await fetch("https://urbancartz-backend.onrender.com/allproducts")
-      .then((res) => res.json())
-      .then((data) => {
+    
+    await fetch("http://localhost:4000/allproducts")
+      .then((response) => {
+        
+    return response.json();
+      })
+      .then( (data) => {
         setAllProducts(data);
       });
   };
@@ -17,7 +21,7 @@ const ListProduct = () => {
   }, []);
 
   const remove_product = async (id) => {
-    await fetch("https://urbancartz-backend.onrender.com/removeproduct", {
+    await fetch("http://localhost:4000/removeproduct", {
       method: "POST",
       headers: {
         Accept: "application/json",
